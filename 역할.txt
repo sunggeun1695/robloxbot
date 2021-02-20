@@ -1,0 +1,1 @@
+let vrole = message.guild.roles.cache.find(r=> r.name === "역할이름")
