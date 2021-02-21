@@ -27,7 +27,7 @@ module.exports = {
         const your = new Discord.MessageEmbed()
         .setTitle('자신의 정보 명령어')
         .addField('`.프사`', '자신프사 또는 멘션한 사람의 프사를 볼수 있습니다.')
-        .addField('`.내정보`', '자신의 정보를 볼수 있습니다.')
+        .addField('`.유저정보`', '자신의 정보를 볼수 있습니다. (다른사람 정보 보기도 가능)')
         .setTimestamp()
 
         const admin = new Discord.MessageEmbed()
@@ -46,7 +46,12 @@ module.exports = {
 
         const steam = new Discord.MessageEmbed()
         .setTitle('스팀 명령어')
-        .addField('`.스팀`', '스팀 게임을 봅니다.')
+        .addField('`.스팀`', '스팀 게임을 봅니다. (패치됨) (말 그대로 명령어 못씀)')
+        .setTimestamp()
+
+        const pp = new Discord.MessageEmbed()
+        .setTitle('곧 만들어질 명령어')
+        .addField('Coming Soon', '곧 명령어가 생길거임.')
         .setTimestamp()
 
         const pages = [
@@ -55,7 +60,8 @@ module.exports = {
                 your,
                 admin,
                 youtube,
-                steam
+                steam,
+                pp
         ]
 
         const emojiList = ["⏪", "⏩"];

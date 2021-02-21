@@ -3,7 +3,7 @@ module.exports = {
     description: "Unmute a member from your server",
     aliases: ["언뮤", "해방", '죄', '넌 죄가 없다'],
 
-    async run (client, message, args) {
+    async run (bot, message, args) {
         if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send("ㄷ");
 
         let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
