@@ -1,6 +1,6 @@
 // 엄청나게 많은 모듈 불러오기
 const Discord = require('discord.js');
-const bot = new Discord.Client();
+const bot = new Client();
 const muted = '<#812620008801959986> 가서 사죄하세요.';
 const config = require('./config.json')
 const keepAlive = require('../server.js');
