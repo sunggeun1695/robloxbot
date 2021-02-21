@@ -4,9 +4,11 @@
   "description": "",
   "main": "src",
   "scripts": {
-    "r": "nodemon src/index.js qa",
+    "r": "node src/index.js qa",
     "start": "node src/index.js live",
-    "dev": "nodemon src/index.js qa"
+    "dev": "node src/index.js graphics",
+    "data": "node src/index.js cpu",
+    "main": "node src/index.js main"
   },
   "dependencies": {
     "@k3rn31p4nic/google-translate-api": "^1.1.1",

@@ -14,7 +14,7 @@ module.exports = {
         .setColor("#0099ff")
         .setThumbnail(bicon)
         .addField("봇 이름", `${bot.user.username}`, inline)
-        .addField("봇 주인", "언젠가는벤당하겠지#8786", inline )
+        .addField("봇 주인", "로쏠호#8786", inline )
         .addField("서버 개수", `🛡 ${servsize}`, inline)
         .addField("채널 수", `📁 ${chansize}`, inline)
         .addField("유저 수", `${usersize}`, inline)

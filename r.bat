@@ -1,1 +1,1 @@
-cls & npm run r & npm start
+cls & npm data & npm start

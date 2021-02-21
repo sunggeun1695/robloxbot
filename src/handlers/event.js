@@ -1,10 +1,16 @@
-const { readdirSync } = require("fs")
+const { dir } = require('console');
+const fs = require('fs');
 
 module.exports = (bot) => {
-    const events = readdirSync(`./events/`).filter(d => d.endsWith('.js'));
-    for (let file of events) {
-        const evt = require(`../events/${file}`);
-        let eName = file.split('.')[0];
-        bot.on(eName, evt.bind(null, bot));
+    const load_dir = (dirs) => {
+        const event_files = fs.readdirSync(`./events/${dirs}`).filter(file => file.endsWith('.js'));
+
+        for(const file of event_files) {
+            const event = require(`../events/${dirs}/${file}`);
+            const event_name = file.split('.')[0];
+            bot.on(event_name, event.bind(null, bot));
+        }
+
+        ['client', 'guild'].forEach(e => load_dir(e));
     }
-};
+}

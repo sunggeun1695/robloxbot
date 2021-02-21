@@ -44,9 +44,9 @@ module.exports = {
         .addField('`.강의리스트`', '강의 리스트를 보여줍니다. (강의는 부계로)')
         .setTimestamp()
 
-        const google = new Discord.MessageEmbed()
-        .setTitle('구글 명령어')
-        .addField('`.번역`', '구글 번역기 api 를 사용하여 번역합니다.')
+        const steam = new Discord.MessageEmbed()
+        .setTitle('스팀 명령어')
+        .addField('`.스팀`', '스팀 게임을 봅니다.')
         .setTimestamp()
 
         const pages = [
@@ -54,7 +54,8 @@ module.exports = {
                 info,
                 your,
                 admin,
-                youtube
+                youtube,
+                steam
         ]
 
         const emojiList = ["⏪", "⏩"];
