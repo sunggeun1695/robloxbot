@@ -1,5 +1,3 @@
-const message = require("../../../../nodejsbot-master/nodejsbot-master/src/events/guild/message");
-
 module.exports = (bot, message) => {
     const prefix = '.';
     if(!message.content.startsWith(prefix) || message.author.bot) return;
