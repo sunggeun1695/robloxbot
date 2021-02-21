@@ -61,6 +61,70 @@ bot.on("message", async message => {
   }
 })
 
+// 뮤트
+let Cooltime_Mute = 3 * 1000 
+let User_Mute_Object = {}
+bot.on('message', async message => {
+  let MuteRole = bot.guilds.cache.get(message.guild.id).roles.cache.find(r => r.name === "Muted").id
+  let MainRole = bot.guilds.cache.get(message.guild.id).roles.cache.find(r => r.name === "인증된맴버").id
+  if (message.author.bot || !message.guild) return
+  MuteRole = message.guild.roles.cache.find(r => r.id == MuteRole)
+  const M_Author = message.author
+  if (!message.member.hasPermission('ADMINISTRATOR')) {
+    let Author_Object = User_Mute_Object[M_Author.id]
+    if (!Author_Object) {
+      User_Mute_Object[M_Author.id] = {
+        time: 0,
+        interval: null,
+        muted: false
+      }
+    } else {
+      if (Author_Object.interval != null) {
+        if (Cooltime_Mute >= Author_Object.time && !Author_Object.muted) {
+          message.member.roles.add(MuteRole)
+          Author_Object.muted = true
+          message.reply(`단타 도배하지마세요. 씨발 님 Mute 드셈. \n 전 채팅과의 간격 ${Author_Object.time}ms ${muted}`)
+        }
+        clearInterval(Author_Object.interval)
+        Author_Object.interval = null
+      } else if (!Author_Object.muted) {
+        Author_Object.interval = setInterval(() => {
+          Author_Object.time++
+        }, 1)
+      }
+      Author_Object.time = 0
+    }
+  }
+})
+
+// 욕감지
+bot.on('message', async message => {
+
+  let blacklisted = require('./util/forbiddenWord.json')
+
+    let foundInText = false;
+    for (var i in blacklisted) { 
+      if (message.content.toLowerCase().includes(blacklisted[i].toLowerCase())) foundInText = true
+    }
+
+    if (foundInText) {
+        const user = message.author.id;
+        if(message.member.hasPermission('ADMINISTRATOR')) return;
+        let vrole = message.guild.roles.cache.find(r=> r.name === "Muted")
+        message.reply(`욕하지마라 이 개새끼야 씨발 님 Mute 드셈. \n사용한 욕: \`\`${blacklisted}\`\` \n${muted}`);
+
+        message.member.roles.add(vrole);
+}
+});
+
+// . 뮤트
+bot.on("message",  message => {if(message.content == '.' || message.content == '?') {
+  let muterole = message.guild.roles.cache.find(r=> r.name === "Muted")
+  if(message.member.hasPermission('ADMINISTRATOR')) return;
+  message.member.roles.add(muterole);
+  message.reply(`\`\`.\`\` \`\`?\`\` 하나만 치지마세요. Mute 드셈.\n\n${muted}`)
+}})
+
 // keepAlive 및 봇을 켜는데 사용되는 곳
 keepAlive();
 bot.login(bot.token); // node src/index.js cpu 으로 로그인
